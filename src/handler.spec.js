@@ -62,6 +62,90 @@ describe('emitDefaultHandler', () => {
 
     emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
+
+  test('PushSent', () => {
+    const json = {
+      event: {
+        jssid: 13,
+        type: 'PushSent',
+      },
+      webhook: {
+        eventTimestamp: 1553550275590,
+        id: 7,
+        name: 'Webhook Documentation',
+        webhookEvent: 'PushSent(TEST)',
+      },
+    };
+
+    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+  });
+
+  test('RestAPIOperation', () => {
+    const json = {
+      event: {
+        authorizedUsername: 'administrator',
+        objectID: 34,
+        objectName: 'Self Service Mobile',
+        objectTypeName: 'Mobile Device Application',
+        operationSuccessful: true,
+        restAPIOperationType: 'GET',
+      },
+      webhook: {
+        eventTimestamp: 1553550275590,
+        id: 7,
+        name: 'Webhook Documentation',
+        webhookEvent: 'RestAPIOperation(TEST)',
+      },
+    };
+
+    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+  });
+
+  test('SmartGroupComputerMembershipChange', () => {
+    const json = {
+      event: {
+        computer: false,
+        groupAddedDevices: [],
+        groupAddedDevicesIds: [1, 2, 3, 4, 5],
+        groupRemovedDevices: [],
+        groupRemovedDevicesIds: [6, 7, 8, 9, 10],
+        jssid: 8,
+        name: 'Smart Group Name',
+        smartGroup: true,
+      },
+      webhook: {
+        eventTimestamp: 1553550275590,
+        id: 1,
+        name: 'Webhook Documentation',
+        webhookEvent: 'SmartGroupMobileDeviceMembershipChange(TEST)',
+      },
+    };
+
+    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+  });
+
+  test('SmartGroupMobileDeviceMembershipChange', () => {
+    const json = {
+      event: {
+        computer: false,
+        groupAddedDevices: [],
+        groupAddedDevicesIds: [1, 2, 3, 4, 5],
+        groupRemovedDevices: [],
+        groupRemovedDevicesIds: [6, 7, 8, 9, 10],
+        jssid: 8,
+        name: 'Smart Group Name',
+        smartGroup: true,
+      },
+      webhook: {
+        eventTimestamp: 1553550275590,
+        id: 1,
+        name: 'Webhook Documentation',
+        webhookEvent: 'SmartGroupMobileDeviceMembershipChange(TEST)',
+      },
+    };
+
+    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+  });
 });
 
 describe('emitComputer', () => {
