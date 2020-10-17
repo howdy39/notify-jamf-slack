@@ -1,4 +1,9 @@
-const { emitDefaultHandler, emitComputer, emitMobileDevice } = require('./handler');
+const {
+  emitDefaultHandler,
+  emitComputer,
+  emitMobileDevice,
+  emitPatchSoftwareTitleUpdated,
+} = require('./handler');
 jest.unmock('./handler');
 
 describe('emitDefaultHandler', () => {
@@ -37,26 +42,6 @@ describe('emitDefaultHandler', () => {
         id: 7,
         name: 'Webhook Documentation',
         webhookEvent: 'JSSShutdown(TEST)',
-      },
-    };
-
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
-  });
-
-  test('PatchSoftwareTitleUpdated', () => {
-    const json = {
-      event: {
-        jssID: 1,
-        lastUpdate: 1506031211000,
-        latestVersion: '61.0.3163.100',
-        name: 'Google Chrome',
-        reportUrl: 'https://company.jamfcloud.com//view/patch/1/report',
-      },
-      webhook: {
-        eventTimestamp: 1553550275590,
-        id: 7,
-        name: 'Webhook Documentation',
-        webhookEvent: 'PatchSoftwareTitleUpdated(TEST)',
       },
     };
 
@@ -149,7 +134,7 @@ describe('emitDefaultHandler', () => {
 });
 
 describe('emitComputer', () => {
-  test('emit', () => {
+  test('Computer', () => {
     const json = {
       event: {
         computer: {
@@ -188,7 +173,7 @@ describe('emitComputer', () => {
 });
 
 describe('emitMobileDevice', () => {
-  test('emit', () => {
+  test('MobileDevice', () => {
     const json = {
       event: {
         bluetoothMacAddress: 'C0:F2:FB:37:04:2B',
@@ -218,5 +203,27 @@ describe('emitMobileDevice', () => {
     };
 
     emitMobileDevice({ webhook: json.webhook, event: json.event });
+  });
+});
+
+describe('emitPatchSoftwareTitleUpdated', () => {
+  test.only('PatchSoftwareTitleUpdated', () => {
+    const json = {
+      event: {
+        jssID: 1,
+        lastUpdate: 1506031211000,
+        latestVersion: '61.0.3163.100',
+        name: 'Google Chrome',
+        reportUrl: 'https://company.jamfcloud.com//view/patch/1/report',
+      },
+      webhook: {
+        eventTimestamp: 1553550275590,
+        id: 7,
+        name: 'Webhook Documentation',
+        webhookEvent: 'PatchSoftwareTitleUpdated(TEST)',
+      },
+    };
+
+    emitPatchSoftwareTitleUpdated({ webhook: json.webhook, event: json.event });
   });
 });

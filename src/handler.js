@@ -34,6 +34,12 @@ const emitMobileDevice = ({ webhook, event }) => {
   SlackService.postSlackWithBlockKit(generateMobileDeviceBlockKit({ webhook, event, obj }));
 };
 
+const emitPatchSoftwareTitleUpdated = ({ webhook, event }) => {
+  SlackService.postSlackWithBlockKit(
+    generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj: event })
+  );
+};
+
 function generateDefaultBlockKit({ webhook, obj }) {
   const builder = new BlockKitBuilder();
   builder.addHeader(webhook.webhookEvent);
@@ -99,6 +105,22 @@ function generateMobileDeviceBlockKit({ webhook, obj }) {
   return builder.getBlockKit();
 }
 
+function generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj }) {
+  const builder = new BlockKitBuilder();
+  builder.addHeader(webhook.webhookEvent);
+
+  let textList = [];
+  for (const [key, value] of Object.entries(obj)) {
+    textList.push(getFieldText({ key, value }));
+  }
+  const imageUrl =
+    'https://user-images.githubusercontent.com/6329532/96355526-79325e80-111d-11eb-943a-6b56f8e362ef.png';
+  const imageAltText = 'update thumbnail';
+  builder.addSectionWithImage(textList.join('\n'), imageUrl, imageAltText);
+
+  return builder.getBlockKit();
+}
+
 function getFieldText({ key, value, isMobile = false }) {
   const fileName = isMobile ? 'mobileDevices.html' : 'computers.html';
   if (key === 'jssID') {
@@ -112,4 +134,5 @@ module.exports = {
   emitDefaultHandler,
   emitComputer,
   emitMobileDevice,
+  emitPatchSoftwareTitleUpdated,
 };
