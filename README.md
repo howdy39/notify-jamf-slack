@@ -17,9 +17,7 @@ notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhook
   - ex) https://foo.jamfcloud.com
 
 ### Optional
-- USE_BASICAUTH
-  - Use Basic authentication flag
-  - ex) TRUE
+Do not specify if not needed.
 - AUTH_USERNAME
   - Basic authentication user name
   - ex) jamfadmin
