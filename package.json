@@ -9,6 +9,7 @@
     "lint": "eslint --fix src/**/*.js"
   },
   "dependencies": {
+    "basic-auth": "^2.0.1",
     "dayjs": "^1.8.35",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
