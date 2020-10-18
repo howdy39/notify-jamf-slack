@@ -1,6 +1,8 @@
 # notify-jamf-slack
 notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhooks/) server and notify to Slack with [Incoming Webhooks](https://api.slack.com/messaging/webhooks).
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Prerequisites
 - Node.js
 - (optional) heroku
@@ -12,12 +14,10 @@ notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhook
   - ex) https://hooks.slack.com/services/AAAAAAAA/BBBBBBBB/CCCCCCCCCCCCCCCCCCCCCC
 - JAMF_URL
   - Jamf application server url
-  - ex) foo.jamfcloud.com
+  - ex) https://foo.jamfcloud.com
 
 ### Optional
-- USE_BASICAUTH
-  - Use Basic authentication flag
-  - ex) TRUE
+Do not specify if not needed.
 - AUTH_USERNAME
   - Basic authentication user name
   - ex) jamfadmin
