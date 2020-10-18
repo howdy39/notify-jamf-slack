@@ -15,10 +15,21 @@
     "JAMF_URL": {
       "description": "Jamf application server url",
       "value": "https://foo.jamfcloud.com"
+    },
+    "AUTH_USERNAME": {
+      "required": "false",
+      "description": "Basic authentication user name",
+      "value": ""
+    },
+    "AUTH_PASSWORD": {
+      "required": "false",
+      "description": "Basic authentication user password",
+      "value": ""
+    },
+    "TZ": {
+      "required": "false",
+      "description": "Time Zone",
+      "value": "Asia/Tokyo"
     }
-  },
-  "addons": [
-    "heroku-redis:hobby-dev",
-    "scheduler:standard"
-  ]
+  }
 }
