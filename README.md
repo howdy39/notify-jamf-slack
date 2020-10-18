@@ -1,7 +1,7 @@
 # notify-jamf-slack
 notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhooks/) server and notify to Slack with [Incoming Webhooks](https://api.slack.com/messaging/webhooks).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/howdy39/notify-jamf-slack/tree/main)
 
 ## Prerequisites
 - Node.js
