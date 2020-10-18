@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const { basicAuth } = require('./auth');
 const { emitDefaultHandler, emitComputer, emitMobileDevice } = require('./handler');
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(basicAuth);
 
 app.post('/', function (req, res) {
   try {
