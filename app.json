@@ -17,17 +17,17 @@
       "value": "https://foo.jamfcloud.com"
     },
     "AUTH_USERNAME": {
-      "required": "false",
+      "required": false,
       "description": "Basic authentication user name",
       "value": ""
     },
     "AUTH_PASSWORD": {
-      "required": "false",
+      "required": false,
       "description": "Basic authentication user password",
       "value": ""
     },
     "TZ": {
-      "required": "false",
+      "required": false,
       "description": "Time Zone",
       "value": "Asia/Tokyo"
     }
