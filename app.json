@@ -1,0 +1,24 @@
+{
+  "name": "notify-jamf-slack",
+  "description": "notify-jamf-slack supply Jamf Webhooks server and notify to Slack with Incoming Webhooks.",
+  "keywords": [
+    "Jamf",
+    "Slack",
+    "Webhook"
+  ],
+  "repository": "https://github.com/howdy39/notify-jamf-slack",
+  "env": {
+    "SLACK_WEBHOOK_URL": {
+      "description": "Slack Incoming WebHooks url",
+      "value": "https://hooks.slack.com/services/AAAAAAAA/BBBBBBBB/CCCCCCCCCCCCCCCCCCCCCC"
+    },
+    "JAMF_URL": {
+      "description": "Jamf application server url",
+      "value": "https://foo.jamfcloud.com"
+    }
+  },
+  "addons": [
+    "heroku-redis:hobby-dev",
+    "scheduler:standard"
+  ]
+}
