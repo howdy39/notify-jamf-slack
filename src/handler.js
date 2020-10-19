@@ -2,6 +2,10 @@ const SlackService = require('./SlackService');
 const BlockKitBuilder = require('./BlockKitBuilder');
 
 const JAMF_URL = process.env.JAMF_URL || 'https://sample.jamfcloud.com';
+let IGNORE_POLICYIDS = [];
+if (process.env.IGNORE_POLICYIDS) {
+  IGNORE_POLICYIDS = process.env.IGNORE_POLICYIDS.split(',').map((policyId) => Number(policyId));
+}
 
 const emitDefaultHandler = ({ webhook, event }) => {
   SlackService.postSlackWithBlockKit(generateDefaultBlockKit({ webhook, obj: event }));
@@ -69,6 +73,10 @@ function generateComputerBlockKit({ webhook, event, obj }) {
   let textList = [];
 
   if (webhook.webhookEvent === 'ComputerPolicyFinished') {
+    if (IGNORE_POLICYIDS.includes(event.policyId)) {
+      console.log(`${event.policyId} is ignored poilcyId.`);
+      return;
+    }
     textList.push(`*policyId*: ${event.policyId}`);
     textList.push(`*successful*: ${event.patchPolicyName}`);
   } else if (webhook.webhookEvent === 'ComputerPatchPolicyCompleted') {

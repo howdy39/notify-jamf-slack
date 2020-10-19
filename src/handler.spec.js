@@ -207,7 +207,7 @@ describe('emitMobileDevice', () => {
 });
 
 describe('emitPatchSoftwareTitleUpdated', () => {
-  test.only('PatchSoftwareTitleUpdated', () => {
+  test('PatchSoftwareTitleUpdated', () => {
     const json = {
       event: {
         jssID: 1,

@@ -24,6 +24,9 @@ Do not specify if not needed.
 - AUTH_PASSWORD
   - Basic authentication user password
   - ex) password42
+- IGNORE_POLICYIDS
+  - Policies you don't want to be notified
+  - ex) 1,3,9
 
 ## Development
 ### Start local server
