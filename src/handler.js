@@ -130,9 +130,11 @@ function generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj }) {
 }
 
 function getFieldText({ key, value, isMobile = false }) {
-  const fileName = isMobile ? 'mobileDevices.html' : 'computers.html';
-  if (key === 'jssID') {
+  if (key.toLowerCase() === 'jssid') {
+    const fileName = isMobile ? 'mobileDevices.html' : 'computers.html';
     return `*${key}*: <${JAMF_URL}/${fileName}?id=${value} | ${value}>`;
+  } else if (key.toLowerCase() === 'policyid') {
+    return `*${key}*: <${JAMF_URL}/policies.html?id=${value} | ${value}>`;
   } else {
     return `*${key}*: ${value}`;
   }
