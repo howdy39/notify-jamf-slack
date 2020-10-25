@@ -41,9 +41,6 @@
     }
   },
   "addons": [
-    "memcachier",
-    {
-      "plan": "memcachier:dev"
-    }
+    "memcachier:dev"
   ]
 }
