@@ -5,6 +5,8 @@ notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhook
 
 ## Prerequisites
 - Node.js
+- memcached
+  - `brew install memcached`
 - (optional) heroku
 
 ## Environment Variables
@@ -33,6 +35,7 @@ Do not specify if not needed.
 For devloper, If you use next command, it will be updated automatically.
 
 ```
+$ memcached
 $ npm run local
 ```
 

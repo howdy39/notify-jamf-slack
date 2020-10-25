@@ -7,7 +7,7 @@ const {
 jest.unmock('./handler');
 
 describe('emitDefaultHandler', () => {
-  test('DeviceAddedToDEP', () => {
+  test('DeviceAddedToDEP', async () => {
     const json = {
       event: {
         assetTag: '1664194',
@@ -25,10 +25,10 @@ describe('emitDefaultHandler', () => {
       },
     };
 
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+    await emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
 
-  test('JSSWebhoooks', () => {
+  test('JSSWebhoooks', async () => {
     const json = {
       event: {
         hostAddress: '172.31.16.70',
@@ -45,10 +45,10 @@ describe('emitDefaultHandler', () => {
       },
     };
 
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+    await emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
 
-  test('PushSent', () => {
+  test('PushSent', async () => {
     const json = {
       event: {
         jssid: 13,
@@ -62,10 +62,10 @@ describe('emitDefaultHandler', () => {
       },
     };
 
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+    await emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
 
-  test('RestAPIOperation', () => {
+  test('RestAPIOperation', async () => {
     const json = {
       event: {
         authorizedUsername: 'administrator',
@@ -83,10 +83,10 @@ describe('emitDefaultHandler', () => {
       },
     };
 
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+    await emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
 
-  test('SmartGroupComputerMembershipChange', () => {
+  test('SmartGroupComputerMembershipChange', async () => {
     const json = {
       event: {
         computer: false,
@@ -106,10 +106,10 @@ describe('emitDefaultHandler', () => {
       },
     };
 
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+    await emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
 
-  test('SmartGroupMobileDeviceMembershipChange', () => {
+  test('SmartGroupMobileDeviceMembershipChange', async () => {
     const json = {
       event: {
         computer: false,
@@ -129,12 +129,12 @@ describe('emitDefaultHandler', () => {
       },
     };
 
-    emitDefaultHandler({ webhook: json.webhook, event: json.event });
+    await emitDefaultHandler({ webhook: json.webhook, event: json.event });
   });
 });
 
 describe('emitComputer', () => {
-  test('Computer', () => {
+  test('Computer', async () => {
     const json = {
       event: {
         computer: {
@@ -168,12 +168,12 @@ describe('emitComputer', () => {
       },
     };
 
-    emitComputer({ webhook: json.webhook, event: json.event });
+    await emitComputer({ webhook: json.webhook, event: json.event });
   });
 });
 
 describe('emitMobileDevice', () => {
-  test('MobileDevice', () => {
+  test('MobileDevice', async () => {
     const json = {
       event: {
         bluetoothMacAddress: 'C0:F2:FB:37:04:2B',
@@ -202,12 +202,12 @@ describe('emitMobileDevice', () => {
       },
     };
 
-    emitMobileDevice({ webhook: json.webhook, event: json.event });
+    await emitMobileDevice({ webhook: json.webhook, event: json.event });
   });
 });
 
 describe('emitPatchSoftwareTitleUpdated', () => {
-  test('PatchSoftwareTitleUpdated', () => {
+  test('PatchSoftwareTitleUpdated', async () => {
     const json = {
       event: {
         jssID: 1,
@@ -224,6 +224,6 @@ describe('emitPatchSoftwareTitleUpdated', () => {
       },
     };
 
-    emitPatchSoftwareTitleUpdated({ webhook: json.webhook, event: json.event });
+    await emitPatchSoftwareTitleUpdated({ webhook: json.webhook, event: json.event });
   });
 });
