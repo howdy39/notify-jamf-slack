@@ -78,7 +78,7 @@ async function generateComputerBlockKit({ webhook, event, obj }) {
       console.log(`${event.policyId} is ignored poilcyId.`);
       return;
     }
-    textList.push(await getFieldText({ key: 'policyId', value: event.computer.policyId }));
+    textList.push(await getFieldText({ key: 'policyId', value: event.policyId }));
     textList.push(`*successful*: ${event.patchPolicyName}`);
   } else if (webhook.webhookEvent === 'ComputerPatchPolicyCompleted') {
     textList.push(`*patchPolicyId*: ${event.patchPolicyId}`);
