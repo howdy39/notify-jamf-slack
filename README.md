@@ -17,6 +17,12 @@ notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhook
 - JAMF_URL
   - Jamf application server url
   - ex) https://foo.jamfcloud.com
+- JAMF_USER
+  - User ID to execute the jamf API
+  - ex) jamfapiuser
+- JAMF_PASSWORD
+  - User password to execute the jamf API
+  - ex) password42
 
 ### Optional
 Do not specify if not needed.
