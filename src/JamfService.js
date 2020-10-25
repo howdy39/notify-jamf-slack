@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const memjs = require('memjs');
 const client = memjs.Client.create();
 
+const JAMF_URL = process.env.JAMF_URL || 'https://sample.jamfcloud.com';
 const JAMF_USER = process.env.JAMF_USER;
 const JAMF_PASSWORD = process.env.JAMF_PASSWORD;
 
@@ -26,7 +27,7 @@ class JamfService {
     console.log(`Not Found policies cache.`);
 
     // https://www.jamf.com/developers/apis/classic/reference/#/policies/findPolicies
-    let url = 'https://heyinc.jamfcloud.com/JSSResource/policies';
+    let url = `${JAMF_URL}/JSSResource/policies`;
 
     const options = {
       method: 'GET',
