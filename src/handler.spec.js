@@ -21,7 +21,7 @@ describe('emitDefaultHandler', () => {
         eventTimestamp: 1553550275590,
         id: 1,
         name: 'Webhook Documentation',
-        webhookEvent: 'DeviceAddedToDEP(TEST)',
+        webhookEvent: 'DeviceAddedToDEP',
       },
     };
 
@@ -41,7 +41,7 @@ describe('emitDefaultHandler', () => {
         eventTimestamp: 1553550275590,
         id: 7,
         name: 'Webhook Documentation',
-        webhookEvent: 'JSSShutdown(TEST)',
+        webhookEvent: 'JSSShutdown',
       },
     };
 
@@ -58,7 +58,7 @@ describe('emitDefaultHandler', () => {
         eventTimestamp: 1553550275590,
         id: 7,
         name: 'Webhook Documentation',
-        webhookEvent: 'PushSent(TEST)',
+        webhookEvent: 'PushSent',
       },
     };
 
@@ -79,7 +79,7 @@ describe('emitDefaultHandler', () => {
         eventTimestamp: 1553550275590,
         id: 7,
         name: 'Webhook Documentation',
-        webhookEvent: 'RestAPIOperation(TEST)',
+        webhookEvent: 'RestAPIOperation',
       },
     };
 
@@ -102,7 +102,7 @@ describe('emitDefaultHandler', () => {
         eventTimestamp: 1553550275590,
         id: 1,
         name: 'Webhook Documentation',
-        webhookEvent: 'SmartGroupMobileDeviceMembershipChange(TEST)',
+        webhookEvent: 'SmartGroupMobileDeviceMembershipChange',
       },
     };
 
@@ -125,7 +125,7 @@ describe('emitDefaultHandler', () => {
         eventTimestamp: 1553550275590,
         id: 1,
         name: 'Webhook Documentation',
-        webhookEvent: 'SmartGroupMobileDeviceMembershipChange(TEST)',
+        webhookEvent: 'SmartGroupMobileDeviceMembershipChange',
       },
     };
 
@@ -164,7 +164,7 @@ describe('emitComputer', () => {
         eventTimestamp: 1553550275590,
         id: 7,
         name: 'Webhook Documentation',
-        webhookEvent: 'ComputerCheckIn(TEST)',
+        webhookEvent: 'ComputerCheckIn',
       },
     };
 
@@ -198,7 +198,7 @@ describe('emitMobileDevice', () => {
         eventTimestamp: 1553550275590,
         id: 7,
         name: 'Webhook Documentation',
-        webhookEvent: 'MobileDeviceCommandCompleted(TEST)',
+        webhookEvent: 'MobileDeviceCommandCompleted',
       },
     };
 
@@ -220,7 +220,7 @@ describe('emitPatchSoftwareTitleUpdated', () => {
         eventTimestamp: 1553550275590,
         id: 7,
         name: 'Webhook Documentation',
-        webhookEvent: 'PatchSoftwareTitleUpdated(TEST)',
+        webhookEvent: 'PatchSoftwareTitleUpdated',
       },
     };
 

@@ -24,7 +24,8 @@ const emitComputer = async ({ webhook, event }) => {
     building: event.computer.building,
     jssID: event.computer.jssID,
   };
-  SlackService.postSlackWithBlockKit(await generateComputerBlockKit({ webhook, event, obj }));
+  const blockKit = await generateComputerBlockKit({ webhook, event, obj });
+  SlackService.postSlackWithBlockKit(blockKit);
 };
 
 const emitMobileDevice = async ({ webhook, event }) => {
@@ -36,23 +37,30 @@ const emitMobileDevice = async ({ webhook, event }) => {
     model: event.model,
     jssID: event.jssID,
   };
-  SlackService.postSlackWithBlockKit(await generateMobileDeviceBlockKit({ webhook, event, obj }));
+  const blockKit = await generateMobileDeviceBlockKit({ webhook, event, obj });
+  SlackService.postSlackWithBlockKit(blockKit);
 };
 
-const emitPatchSoftwareTitleUpdated = ({ webhook, event }) => {
-  SlackService.postSlackWithBlockKit(
-    generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj: event })
-  );
+const emitPatchSoftwareTitleUpdated = async ({ webhook, event }) => {
+  const blockKit = await generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj: event });
+  SlackService.postSlackWithBlockKit(blockKit);
 };
 
 async function generateDefaultBlockKit({ webhook, obj }) {
   const builder = new BlockKitBuilder();
   builder.addHeader(webhook.webhookEvent);
 
+  let type = '';
+  if (webhook.webhookEvent === 'SmartGroupComputerMembershipChange') {
+    type = 'smartComputerGroup';
+  } else if (webhook.webhookEvent === 'SmartGroupMobileDeviceMembershipChange') {
+    type = 'smartMobileDeviceGroup';
+  }
+
   let textList = [];
   let i = 0;
   for (const [key, value] of Object.entries(obj)) {
-    textList.push(await getFieldText({ key, value }));
+    textList.push(await getFieldText({ key, value, type }));
     i++;
     if (i % 10 === 0) {
       // max fields is 10.
@@ -78,7 +86,13 @@ async function generateComputerBlockKit({ webhook, event, obj }) {
       console.log(`${event.policyId} is ignored poilcyId.`);
       return;
     }
-    textList.push(await getFieldText({ key: 'policyId', value: event.policyId }));
+    textList.push(
+      await getFieldText({
+        key: 'policyId',
+        value: event.policyId,
+        type: 'computer',
+      })
+    );
     textList.push(`*successful*: ${event.patchPolicyName}`);
   } else if (webhook.webhookEvent === 'ComputerPatchPolicyCompleted') {
     textList.push(`*patchPolicyId*: ${event.patchPolicyId}`);
@@ -88,7 +102,7 @@ async function generateComputerBlockKit({ webhook, event, obj }) {
   }
 
   for (const [key, value] of Object.entries(obj)) {
-    textList.push(await getFieldText({ key, value }));
+    textList.push(await getFieldText({ key, value, type: 'computer' }));
   }
   const imageUrl =
     'https://user-images.githubusercontent.com/6329532/96354794-9ebb6a00-1115-11eb-9a5b-42592714221a.png';
@@ -98,13 +112,13 @@ async function generateComputerBlockKit({ webhook, event, obj }) {
   return builder.getBlockKit();
 }
 
-function generateMobileDeviceBlockKit({ webhook, obj }) {
+async function generateMobileDeviceBlockKit({ webhook, obj }) {
   const builder = new BlockKitBuilder();
   builder.addHeader(webhook.webhookEvent);
 
   let textList = [];
   for (const [key, value] of Object.entries(obj)) {
-    textList.push(getFieldText({ key, value, isMobile: true }));
+    textList.push(await getFieldText({ key, value, type: 'mobile' }));
   }
   const imageUrl =
     'https://user-images.githubusercontent.com/6329532/96354820-e9d57d00-1115-11eb-9fd2-f1fc99585520.png';
@@ -120,7 +134,7 @@ async function generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj }) {
 
   let textList = [];
   for (const [key, value] of Object.entries(obj)) {
-    textList.push(await getFieldText({ key, value }));
+    textList.push(await getFieldText({ key, value, type: 'patch' }));
   }
   const imageUrl =
     'https://user-images.githubusercontent.com/6329532/96355526-79325e80-111d-11eb-943a-6b56f8e362ef.png';
@@ -130,16 +144,29 @@ async function generatePatchSoftwareTitleUpdatedBlockKit({ webhook, obj }) {
   return builder.getBlockKit();
 }
 
-async function getFieldText({ key, value, isMobile = false }) {
+async function getFieldText({ key, value, type }) {
   if (key.toLowerCase() === 'jssid') {
-    const fileName = isMobile ? 'mobileDevices.html' : 'computers.html';
-    return `*${key}*: <${JAMF_URL}/${fileName}?id=${value} | ${value}>`;
+    let fileName = '';
+
+    if (type === 'computer') {
+      fileName = 'computers.html';
+    } else if (type === 'mobile') {
+      fileName = 'mobileDevices.html';
+    } else if (type === 'patch') {
+      fileName = 'patch.html';
+    } else if (type === 'smartComputerGroup') {
+      fileName = 'smartComputerGroups.html';
+    } else if (type === 'smartMobileDeviceGroup') {
+      fileName = 'smartMobileDeviceGroups.html';
+    }
+    if (fileName) {
+      return `*${key}*: <${JAMF_URL}/${fileName}?id=${value} | ${value}>`;
+    }
   } else if (key.toLowerCase() === 'policyid') {
     const policyName = await JamfService.getPolicyName(value);
     return `*${key}*: <${JAMF_URL}/policies.html?id=${value} | ${value} ${policyName}>`;
-  } else {
-    return `*${key}*: ${value}`;
   }
+  return `*${key}*: ${value}`;
 }
 
 module.exports = {
