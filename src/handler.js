@@ -15,14 +15,14 @@ const emitDefaultHandler = async ({ webhook, event }) => {
 const emitComputer = async ({ webhook, event }) => {
   const obj = {
     username: event.username,
-    realName: event.computer.realName,
-    serialNumber: event.computer.serialNumber,
-    deviceName: event.computer.deviceName,
-    model: event.computer.model,
-    emailAddress: event.computer.emailAddress,
-    department: event.computer.department,
-    building: event.computer.building,
-    jssID: event.computer.jssID,
+    realName: event.computer && event.computer.realName,
+    serialNumber: event.computer && event.computer.serialNumber,
+    deviceName: event.computer && event.computer.deviceName,
+    model: event.computer && event.computer.model,
+    emailAddress: event.computer && event.computer.emailAddress,
+    department: event.computer && event.computer.department,
+    building: event.computer && event.computer.building,
+    jssID: event.computer && event.computer.jssID,
   };
   const blockKit = await generateComputerBlockKit({ webhook, event, obj });
   SlackService.postSlackWithBlockKit(blockKit);
