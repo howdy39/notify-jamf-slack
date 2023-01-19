@@ -37,7 +37,6 @@ For devloper, If you use next command, it will be updated automatically.
 ```
 $ memcached
 $ npm run local
-$ curl -X POST -H "Content-Type: application/json" -d @sample.json "https://localhost/"
 ```
 
 ### Testing with ngrok
@@ -45,6 +44,7 @@ For testing, you can use the [ngrok](https://ngrok.com/) secure tunneling servic
 
 ```
 $ ./ngrok http 3000
+curl -X POST -H "Content-Type: application/json" -d @sample.json "https://xxx.ngrok.io"
 ```
 
 ### For heroku user
