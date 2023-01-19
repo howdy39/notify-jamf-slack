@@ -37,6 +37,7 @@ For devloper, If you use next command, it will be updated automatically.
 ```
 $ memcached
 $ npm run local
+$ curl -X POST -H "Content-Type: application/json" -d @sample.json "https://localhost/"
 ```
 
 ### Testing with ngrok

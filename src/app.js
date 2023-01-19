@@ -16,6 +16,10 @@ app.use(basicAuth);
 app.post('/', function (req, res) {
   try {
     const { webhook, event } = req.body;
+    if (webhook === undefined) {
+      console.log('コネクション確認リクエストのため終了', webhook);
+      return;
+    }
     const { webhookEvent } = webhook;
 
     const computerWebhooks = [

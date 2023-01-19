@@ -1,0 +1,16 @@
+{
+    "event": {
+        "assetTag": "1664194",
+        "description": "Mac Pro howdy39",
+        "deviceAssignedDate": 1552478234000,
+        "deviceEnrollmentProgramInstanceId": 1,
+        "model": "Mac Pro",
+        "serialNumber": "92D8014694C4BE96B3"
+    },
+    "webhook": {
+        "eventTimestamp": 1553550275590,
+        "id": 1,
+        "name": "Webhook Documentation",
+        "webhookEvent": "DeviceAddedToDEP"
+    }
+}
