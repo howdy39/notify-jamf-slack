@@ -93,13 +93,12 @@ async function generateComputerBlockKit({ webhook, event, obj }) {
         type: 'computer',
       })
     );
-    textList.push(`*successful*: ${event.patchPolicyName}`);
   } else if (webhook.webhookEvent === 'ComputerPatchPolicyCompleted') {
     textList.push(`*patchPolicyId*: ${event.patchPolicyId}`);
     textList.push(`*patchPolicyName*: ${event.patchPolicyName}`);
     textList.push(`*softwareTitleId*: ${event.softwareTitleId}`);
-    textList.push(`*successful*: ${event.patchPolicyName}`);
   }
+  textList.push(`*successful*: ${event.successful}`);
 
   for (const [key, value] of Object.entries(obj)) {
     textList.push(await getFieldText({ key, value, type: 'computer' }));
