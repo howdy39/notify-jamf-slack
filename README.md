@@ -20,12 +20,12 @@ notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhook
 
 ### Optional
 Do not specify if not needed.
-- JAMF_USER
-  - Basic authentication user name
-  - ex) jamfadmin
-- JAMF_PASSWORD
+- JAMF_CLIENT_ID
+  - API Client ID
+  - ex) b31c7c16-2662-4304-a71a-xxxxxxxxxxxx
+- JAMF_CLIENT_SECRET
   - Basic authentication user password
-  - ex) password42
+  - ex) O2CoyCYhvocCR0GLcr3TIQT19dOO834umXUwGhLoJ9Gezexxxxxxxxxxxxxxxxxx
 - IGNORE_POLICYIDS
   - Policies you don't want to be notified
   - ex) 1,3,9
