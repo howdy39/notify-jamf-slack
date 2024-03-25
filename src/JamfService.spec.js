@@ -1,8 +1,15 @@
-const { getPolicyName } = require('./JamfService');
+const { getToken, getPolicyName } = require('./JamfService');
 jest.unmock('./JamfService');
 
-describe('getPolicyName', () => {
+describe.skip('getToken', () => {
+  test('not error', async () => {
+    await getToken();
+  });
+});
+
+describe.skip('getPolicyName', () => {
   test('not found', async () => {
-    await getPolicyName(42);
+    const policyName = await getPolicyName(63);
+    console.log({ policyName });
   });
 });

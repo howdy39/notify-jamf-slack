@@ -1,15 +1,25 @@
-const Buffer = require('buffer/').Buffer;
 const fetch = require('node-fetch');
 const memjs = require('memjs');
 const client = memjs.Client.create();
 
 const JAMF_URL = process.env.JAMF_URL || 'https://sample.jamfcloud.com';
-const JAMF_USER = process.env.JAMF_USER;
-const JAMF_PASSWORD = process.env.JAMF_PASSWORD;
-
-const authData = Buffer.from(`${JAMF_USER}:${JAMF_PASSWORD}`).toString('base64');
 
 class JamfService {
+  static async getToken() {
+    // https://developer.jamf.com/jamf-pro/docs/client-credentials
+    const url = `${JAMF_URL}/api/oauth/token`;
+
+    const params = new URLSearchParams();
+    params.append('grant_type', 'client_credentials');
+    params.append('client_id', process.env.JAMF_CLIENT_ID);
+    params.append('client_secret', process.env.JAMF_CLIENT_SECRET);
+
+    const response = await fetch(url, { method: 'POST', body: params });
+    const json = await response.json();
+
+    return json.access_token;
+  }
+
   static async getPolicyName(policyId) {
     const policies = await JamfService.findPolicies();
     const policy = policies.find((policy) => {
@@ -19,6 +29,8 @@ class JamfService {
   }
 
   static async findPolicies() {
+    const token = await JamfService.getToken();
+
     const memPolicies = await client.get('policies');
     if (memPolicies.value) {
       console.log('Found policies cache.');
@@ -32,7 +44,7 @@ class JamfService {
     const options = {
       method: 'GET',
       headers: {
-        Authorization: `Basic ${authData}`,
+        Authorization: `Bearer ${token}`,
         accept: 'application/json',
       },
     };
