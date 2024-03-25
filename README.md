@@ -17,15 +17,15 @@ notify-jamf-slack supply [Jamf Webhooks](https://www.jamf.com/developers/webhook
 - JAMF_URL
   - Jamf application server url
   - ex) https://foo.jamfcloud.com
-
-### Optional
-Do not specify if not needed.
 - JAMF_CLIENT_ID
   - API Client ID
   - ex) b31c7c16-2662-4304-a71a-xxxxxxxxxxxx
 - JAMF_CLIENT_SECRET
-  - Basic authentication user password
+  - API Client Secret
   - ex) O2CoyCYhvocCR0GLcr3TIQT19dOO834umXUwGhLoJ9Gezexxxxxxxxxxxxxxxxxx
+
+### Optional
+Do not specify if not needed.
 - IGNORE_POLICYIDS
   - Policies you don't want to be notified
   - ex) 1,3,9
