@@ -16,14 +16,12 @@
       "description": "Jamf application server url",
       "value": "https://foo.jamfcloud.com"
     },
-    "AUTH_USERNAME": {
-      "required": false,
-      "description": "Basic authentication user name",
+    "JAMF_CLIENT_ID": {
+      "description": "API Client ID",
       "value": ""
     },
-    "AUTH_PASSWORD": {
-      "required": false,
-      "description": "Basic authentication user password",
+    "JAMF_CLIENT_SECRET": {
+      "description": "API Client Secret",
       "value": ""
     },
     "TZ": {
